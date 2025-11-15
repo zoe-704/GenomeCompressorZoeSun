@@ -24,11 +24,21 @@ public class GenomeCompressor {
      * { A, C, T, G } from standard input; compresses and writes the results to standard output.
      */
     public static void compress() {
-
-        // TODO: complete the compress() method
         // Read in the string and find the first instance of TARGET
         String s = BinaryStdIn.readString();
         int n = s.length();
+        int rem = n % 4;
+        if (rem == 0) {
+            BinaryStdOut.write(0, 8); // 00000000
+        } else if (rem == 1) {
+            BinaryStdOut.write(16, 6); // 010000
+        } else if (rem == 2) {
+            BinaryStdOut.write(16, 4); // 1000
+        } else if (rem == 3) {
+            BinaryStdOut.write(3, 2); // 11
+        }
+
+        // BinaryStdOut.write(n);
         // Write out each character
         for (int i = 0; i < n; i++) {
             char cur = s.charAt(i);
@@ -36,38 +46,40 @@ public class GenomeCompressor {
                 BinaryStdOut.write(0, 2);
             } else if (cur == 'C') {
                 BinaryStdOut.write(1, 2);
-
             } else if (cur == 'G') {
                 BinaryStdOut.write(2, 2);
-
-            } else {
+            } else if (cur == 'T') {
                 BinaryStdOut.write(3,2);
             }
         }
-
-            BinaryStdOut.close();
+        BinaryStdOut.close();
     }
 
     /**
      * Reads a binary sequence from standard input; expands and writes the results to standard output.
      */
     public static void expand() {
-
-        // TODO: complete the expand() method
         // Write out each character
+        int header = BinaryStdIn.readInt(2);
+        if (header == 0) {
+            BinaryStdIn.readInt(6);
+        } else if (header == 1) {
+            BinaryStdIn.readInt(4);
+        } else if (header == 2) {
+            BinaryStdIn.readInt(2);
+        }
         while (!BinaryStdIn.isEmpty()) {
             int cur = BinaryStdIn.readInt(2);
-            if (cur == 00) {
+            if (cur == 0) {
                 BinaryStdOut.write("A");
-            } else if (cur == 01) {
+            } else if (cur == 1) {
                 BinaryStdOut.write("C");
-            } else if (cur == 10) {
+            } else if (cur == 2) {
                 BinaryStdOut.write("G");
             } else {
                 BinaryStdOut.write("T");
             }
         }
-
         BinaryStdOut.close();
     }
 

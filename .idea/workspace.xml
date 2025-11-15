@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b73ab661-840a-4b64-b072-3764519be013" name="Changes" comment="Command line testing">
-      <change afterPath="$PROJECT_DIR$/src/GenomeCompressor.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/compressedGenomeTest.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/expandedGenomeTest.txt" afterDir="false" />
+    <list default="true" id="b73ab661-840a-4b64-b072-3764519be013" name="Changes" comment="V1 work">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WORK_LOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/WORK_LOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GenomeCompressor.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/GenomeCompressor.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GenomeCompressor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GenomeCompressor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/expandedGenomeTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/expandedGenomeTest.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,12 +74,21 @@
       <option name="project" value="LOCAL" />
       <updated>1763147684205</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="V1 work">
+      <option name="closed" value="true" />
+      <created>1763178937636</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1763178937636</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Command line testing" />
-    <option name="LAST_COMMIT_MESSAGE" value="Command line testing" />
+    <MESSAGE value="V1 work" />
+    <option name="LAST_COMMIT_MESSAGE" value="V1 work" />
   </component>
 </project>
