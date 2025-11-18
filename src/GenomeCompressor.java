@@ -5,7 +5,6 @@
  *  Dependencies: BinaryIn.java BinaryOut.java
  *  Data files:   genomeTest.txt
  *                virus.txt
- *
  *  Compress or expand a genomic sequence using a 2-bit code.
  ******************************************************************************/
 
@@ -27,30 +26,22 @@ public class GenomeCompressor {
         // Read in the string and find the first instance of TARGET
         String s = BinaryStdIn.readString();
         int n = s.length();
-        int rem = n % 4;
-        if (rem == 0) {
-            BinaryStdOut.write(0, 8); // 00000000
-        } else if (rem == 1) {
-            BinaryStdOut.write(16, 6); // 010000
-        } else if (rem == 2) {
-            BinaryStdOut.write(16, 4); // 1000
-        } else if (rem == 3) {
-            BinaryStdOut.write(3, 2); // 11
-        }
 
-        // BinaryStdOut.write(n);
+        // Header so that compressed binary sequence is in bytes
+        int rem = n % 4;
+        if (rem == 0) BinaryStdOut.write(0, 8); // 00000000
+        else if (rem == 1) BinaryStdOut.write(16, 6); // 010000
+        else if (rem == 2) BinaryStdOut.write(16, 4); // 1000
+        else BinaryStdOut.write(3, 2); // 11
+
         // Write out each character
         for (int i = 0; i < n; i++) {
             char cur = s.charAt(i);
-            if (cur == 'A') {
-                BinaryStdOut.write(0, 2);
-            } else if (cur == 'C') {
-                BinaryStdOut.write(1, 2);
-            } else if (cur == 'G') {
-                BinaryStdOut.write(2, 2);
-            } else if (cur == 'T') {
-                BinaryStdOut.write(3,2);
-            }
+
+            if (cur == 'A') BinaryStdOut.write(0, 2); // 00
+            else if (cur == 'C') BinaryStdOut.write(1, 2); // 01
+            else if (cur == 'G') BinaryStdOut.write(2, 2); // 10
+            else if (cur == 'T') BinaryStdOut.write(3,2); // 11
         }
         BinaryStdOut.close();
     }
@@ -59,26 +50,19 @@ public class GenomeCompressor {
      * Reads a binary sequence from standard input; expands and writes the results to standard output.
      */
     public static void expand() {
-        // Write out each character
+        // Ignore the first 2-8 bits of binary sequence depending on 2-bit header
         int header = BinaryStdIn.readInt(2);
-        if (header == 0) {
-            BinaryStdIn.readInt(6);
-        } else if (header == 1) {
-            BinaryStdIn.readInt(4);
-        } else if (header == 2) {
-            BinaryStdIn.readInt(2);
-        }
+        if (header == 0) BinaryStdIn.readInt(6);
+        else if (header == 1) BinaryStdIn.readInt(4);
+        else if (header == 2) BinaryStdIn.readInt(2);
+
+        // Write out each letter
         while (!BinaryStdIn.isEmpty()) {
             int cur = BinaryStdIn.readInt(2);
-            if (cur == 0) {
-                BinaryStdOut.write("A");
-            } else if (cur == 1) {
-                BinaryStdOut.write("C");
-            } else if (cur == 2) {
-                BinaryStdOut.write("G");
-            } else {
-                BinaryStdOut.write("T");
-            }
+            if (cur == 0) BinaryStdOut.write("A");
+            else if (cur == 1) BinaryStdOut.write("C");
+            else if (cur == 2) BinaryStdOut.write("G");
+            else BinaryStdOut.write("T");
         }
         BinaryStdOut.close();
     }
